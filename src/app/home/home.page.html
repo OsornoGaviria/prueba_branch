@@ -1,20 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+        <img class="img-title" src="https://sigma-studios.s3-us-west-2.amazonaws.com/test/sigma-logo.png">
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content >
+  <div class="head-content">
+      <div class="img-head-content">
+        <img src="https://sigma-studios.s3-us-west-2.amazonaws.com/test/sigma-logo.png">
+      </div>
+      <div class="txt-head-content">
+          <h3>Prueba de Desarrollo</h3>
+          <p>Registro de participantes</p>
+      </div>
   </div>
+  <div class="cont-content">
+    <div class="form">
+        <div class="form-title" >
+          <strong>Recursos Humanos y Reclutamiento</strong>
+        </div>
+        <div class="form-btn">
+          <ion-item lines="none" (click)="irRegistro()">
+            <ion-icon  slot="start" name="person-add-outline"></ion-icon>
+            <ion-label>
+              <strong class="label">Participante</strong>
+            </ion-label>
+          </ion-item>
+        </div>
+        <br>
+        <div  class="form-foot">
+           <p style="font-size: 13px"> © 2021 Todos los derechos reservados.</p>
+         </div>
+    </div>
+
+  </div>
+
 </ion-content>

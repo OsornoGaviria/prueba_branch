@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-button slot="start" fill="clear" routerLink="/">
+        <ion-icon name="chevron-back-outline" ></ion-icon> Atras
+    </ion-button>
+    <ion-title >
+      Participante
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="head-content">
+    <div class="img-head-content">
+      <img src="https://sigma-studios.s3-us-west-2.amazonaws.com/test/sigma-logo.png">
+    </div>
+  </div>
+  <br>
+  <div class="cont-content">
+      <div class="formGroup">
+        <div class="form">
+          <div class="form-title" >
+            <strong>Registro participante</strong>
+          </div>
+        </div>
+
+        <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+          <div class="form-group">
+              <div class="item">
+                <ion-item lines="full">
+                  <ion-label position="floating">Nombre</ion-label>
+                  <ion-input formControlName="nombres" type="text" required (ionChange)="validaName($event)"></ion-input>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.nombres.errors?.required">
+                  *Ingrese su nombre.
+                </span>
+                <span class="error ion-padding" *ngIf="vNombre">
+                  *Nombre no puede contener caracteres especiales
+                </span>
+              </div>
+              <div class="item">
+                <ion-item lines="full">
+                  <ion-label position="floating">Apellido</ion-label>
+                  <ion-input formControlName="apellidos" type="text" required (ionChange)="validaLastName($event)"></ion-input>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.apellidos.errors?.required">
+                  *Apellido no puede contener caracteres especiales
+                </span>
+                <span class="error ion-padding" *ngIf="vApellido">
+                  *Ingrese un correo electronico valido
+                </span>
+              </div>
+          </div>
+          <div class="form-group-full">
+            <div class="item">
+              <ion-item lines="full">
+                <ion-label position="floating">Departamento</ion-label>
+                <ion-select formControlName="departamento" required (ionChange)="cambio($event)">
+                    <ion-select-option *ngFor="let depto of deptos" [value]="depto.codigo" >
+                        {{depto.descripcion}}
+                    </ion-select-option>
+                </ion-select>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.departamento.errors?.required">
+                *Seleccione el departamento
+              </span>
+            </div>
+          </div>
+          <div class="form-group-full">
+            <div class="item">
+              <ion-item lines="full">
+                <ion-label position="floating">Ciudad</ion-label>
+                <ion-select formControlName="ciudad"  required>
+                  <div *ngFor="let city of citys">
+                    <ion-select-option *ngIf="city.deptoid==codCiudad" [value]="city.codigo" >
+                      {{city.descripcion}}
+                    </ion-select-option >
+                  </div>
+                </ion-select>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.ciudad.errors?.required">
+                *Seleccione la ciudad
+              </span>
+            </div>
+          </div>
+          <div class="form-group-full">
+            <div class="item">
+              <ion-item lines="full">
+                <ion-label position="floating">Email</ion-label>
+                <ion-input formControlName="email" type="email" required (ionChange)="validaEmail($event)"></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+                *Ingrese su correo
+              </span>
+              <span class="error ion-padding" *ngIf="vEmail">
+                *Ingrese un correo electronico valido
+              </span>
+            </div>
+          </div>
+          <div class="form-group-full">
+            <div class="item">
+              <ion-item lines="full">
+                <ion-label position="floating">Telefono</ion-label>
+                <ion-input formControlName="telefono" type="number" required (ionChange)="validaCel($event)"></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.telefono.errors?.required">
+                *Ingrese su telefono
+              </span>
+              <span class="error ion-padding" *ngIf="vtelefono">
+                *Ingrese un número de telefono valido
+              </span>
+            </div>
+          </div>
+          <div class="form-group-full">
+            <div class="item">
+              <ion-item lines="full">
+                <ion-label position="floating">Comentarios</ion-label>
+                <ion-input formControlName="comentarios" type="textarea" required></ion-input>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.comentarios.errors?.required">
+                *Ingrese su comentario
+              </span>
+            </div>
+          </div>
+          <div class="form-group-full">
+              <ion-button shape="round" type="submit" color="danger" expand="block">Guardar</ion-button>
+           </div>
+        </form>
+      </div>
+  </div>
+</ion-content>

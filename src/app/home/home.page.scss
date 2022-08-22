@@ -1,27 +1,65 @@
-#container {
+
+.img-title{
+  width: 120px;
+}
+ion-content {
+  --background: linear-gradient(rgb(242, 242, 253), #f4f5f8);
+}
+
+.head-content{
   text-align: center;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  .img-head-content{
+    margin-top: 4rem;
+  }
+
+  .txt-head-content{
+    @font-face {
+      font-family: "Roboto";
+      src: url('../../assets/Roboto/Roboto-Bold.ttf');
+    }
+
+    h3{
+      color:rgb(10, 21, 81);
+    }
+
+    p{
+      color: rgba(10, 21, 81, 0.7)
+    }
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+.cont-content{
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+     .form{
+       margin: auto !important;
+        height: 75% !important;
+        width: 90%;
+        border-radius: 5px;
+        background-color: rgb(255, 255, 255);
+        color:rgb(10, 21, 81);
+        padding: 10px;
 
-  color: #8c8c8c;
+        .form-title{
+          padding: 5px;
+          font-size: 1.3rem;
+        }
+     }
 
-  margin: 0;
-}
+     .form-btn{
+      margin-top: 1rem;
+      padding: 5px;
+      border: 1px solid #f4f5f8;
+      .label{
+        color:rgb(10, 21, 81);
+      }
 
-#container a {
-  text-decoration: none;
+     }
+
+
+     .form-foot{
+      margin-top: 12rem !important;
+      text-align: center;
+      margin: auto !important;
+    }
 }

@@ -1,0 +1,28 @@
+
+
+ion-content {
+  --background: linear-gradient(rgb(242, 242, 253), #f4f5f8);
+}
+
+.cont-content{
+
+  .succes-alert{
+     margin: auto !important;
+     margin-top: 2rem !important;
+     height: auto +150px !important;
+     width: 90%;
+     border-radius: 5px;
+     background-color: rgb(255, 255, 255);
+     color:rgb(10, 21, 81);
+     padding: 10px;
+     text-align: center;
+  }
+
+  ion-icon{
+    zoom: 7;
+  }
+
+  h5{
+    font-size: 2rem;
+  }
+}

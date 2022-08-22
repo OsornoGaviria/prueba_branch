@@ -1,5 +1,7 @@
 {
   "name": "prueba_branch",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
