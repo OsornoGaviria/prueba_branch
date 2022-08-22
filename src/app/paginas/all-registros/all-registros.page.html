@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-button slot="start" fill="clear" routerLink="/home">
+        <ion-icon name="chevron-back-outline" ></ion-icon>
+    </ion-button>
+    <ion-title >
+      Datos Registrados
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+      <ion-item *ngFor="let item of allregistros">
+        <ion-avatar slot="start">
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+        </ion-avatar>
+        <ion-label>
+            <h3><strong>{{item.nombre}} {{item.apellido}}</strong></h3>
+            <p>{{item.email}} - {{item.telefono}}</p>
+        </ion-label>
+      </ion-item>
+  </ion-list>
+</ion-content>

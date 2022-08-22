@@ -25,52 +25,8 @@ export class ResgitroParticipantePage implements OnInit {
   vCiudad: boolean = false;
   vDepto: boolean = false;
   codCiudad;
+  deptos; citys;
 
-  deptos=[
-    {
-      codigo: '01',
-      descripcion: 'Amazonas'
-    },
-    {
-      codigo: '02',
-      descripcion: 'Antioquia'
-    },
-    {
-      codigo: '03',
-      descripcion: 'Bolivar'
-    }
-  ]
-
-  citys=[
-     { codigo:'01',
-       deptoid:'01',
-       descripcion: 'Leticia'
-    },
-    { codigo:'02',
-      deptoid:'01',
-      descripcion: 'Puerto Narino'
-    },
-    { codigo:'03',
-      deptoid:'02',
-      descripcion: 'Medellin'
-    } ,
-    { codigo:'04',
-      deptoid:'02',
-      descripcion: 'Bello'
-    },
-    { codigo:'05',
-      deptoid:'02',
-      descripcion: 'Envigado'
-    } ,
-    { codigo:'06',
-      deptoid:'03',
-      descripcion: 'Barranquilla'
-    } ,
-    { codigo:'7',
-      deptoid:'03',
-      descripcion: 'Soledad'
-    }
-  ]
 
   constructor(private apiRestService:ApiRestService,
     public toastController: ToastController,
@@ -79,20 +35,23 @@ export class ResgitroParticipantePage implements OnInit {
     private routerLink: Router) {
 
       this.ionicForm = this.formBuilder.group({
-        nombres: ['', [Validators.required, Validators.maxLength(50)]],
-        apellidos:['', [Validators.required, Validators.maxLength(50)]],
+        nombre: ['', [Validators.required, Validators.maxLength(50)]],
+        apellido:['', [Validators.required, Validators.maxLength(50)]],
         email: ['', [Validators.required, Validators.maxLength(30)]],
         departamento:[''],
         ciudad:[''],
         telefono:['', [Validators.required, Validators.maxLength(15)]],
-        comentarios:['', [Validators.required, Validators.maxLength(200)]]
+        comentario:['', [Validators.required, Validators.maxLength(200)]]
      })
     }
 
   ngOnInit() {
-    // this.apiRestService.searcDeptos().subscribe(res=>{
-    //   console.log(res)
-    // })
+    let data = {
+      funcion: 'searchDeptos',
+    }
+    this.apiRestService.searchDeptos(data).subscribe(res=>{
+      this.deptos=res;
+    })
   }
 
 
@@ -104,7 +63,7 @@ export class ResgitroParticipantePage implements OnInit {
     } else {
 
       if(!this.vtelefono && !this.vEmail && !this.vNombre && !this.vApellido){
-        this.routerLink.navigate(['/succes'])
+        this.saveData()
       }else{
         this.messageError()
         return false;
@@ -117,8 +76,15 @@ export class ResgitroParticipantePage implements OnInit {
   }
 
 
-  cambio(event){
-      this.codCiudad=event.detail.value;
+  verCiudades(event){
+      let data = {
+        funcion: 'searchCitys',
+        codDepto: event.detail.value
+      }
+      this.apiRestService.searchCitys(data).subscribe(res=>{
+        this.citys=res;
+      })
+
   }
 
   async messageError() {
@@ -149,7 +115,19 @@ export class ResgitroParticipantePage implements OnInit {
     this.vApellido= this.validaciones.validaLastName(event.detail.value)
   }
 
-
+  saveData(){
+    let data = {
+      funcion: 'saveRegistre',
+      dataUser: this.ionicForm.value
+    }
+    this.apiRestService.saveRegistre(data).subscribe(res=>{
+          if(res==true){
+            this.routerLink.navigate(['/succes'])
+          }else{
+              this.messageError();
+          }
+    })
+  }
 
 
 

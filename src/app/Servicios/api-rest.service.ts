@@ -6,13 +6,35 @@ import {HttpClient, HttpHeaders   } from '@angular/common/http';
 })
 export class ApiRestService {
 
-  apiUrl='https://sigma-studios.s3-us-west-2.amazonaws.com/test/colombia.json';
+  apiUrl ='https://prueba-branch.000webhostapp.com/api/'
 
   constructor(private http: HttpClient) { }
 
-  searcDeptos(){
+  searchDeptos(data){
     var headers = new HttpHeaders();
     headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    return this.http.get(this.apiUrl)
+    return this.http.post(this.apiUrl,JSON.stringify(data),{headers:headers});
   }
+
+
+  searchCitys(data){
+    var headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    return this.http.post(this.apiUrl,JSON.stringify(data),{headers:headers});
+  }
+
+
+  saveRegistre(data){
+    var headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    return this.http.post(this.apiUrl,JSON.stringify(data),{headers:headers});
+  }
+
+  cargarRegistros(data){
+    var headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    return this.http.post(this.apiUrl,JSON.stringify(data),{headers:headers});
+  }
+
+
 }

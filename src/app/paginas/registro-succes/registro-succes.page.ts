@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-succes',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroSuccesPage implements OnInit {
 
-  constructor() { }
+  constructor(private routerLink: Router) { }
 
   ngOnInit() {
+  }
+
+
+  allData(){
+    this.routerLink.navigate(['/all-registros'])
   }
 
 }
